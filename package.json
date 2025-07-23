@@ -1,0 +1,28 @@
+{
+  "name": "ai-accessibility-scanner",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "axe-core": "^4.10.3",
+    "jsdom": "^26.1.0",
+    "next": "^15.4.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7"
+  }
+}
