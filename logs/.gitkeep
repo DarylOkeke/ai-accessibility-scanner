@@ -1,0 +1,3 @@
+# Logs directory for scheduled scans
+# This file ensures the logs directory is created in git
+# Actual log files are gitignored

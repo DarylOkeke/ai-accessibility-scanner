@@ -1,14 +1,21 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { JSDOM } from 'jsdom';
 import * as axeCore from 'axe-core';
+import { generateFixes } from '../../lib/openai';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Skip authentication for debugging
+  // const { userId } = getAuth(req);
+  // if (!userId) {
+  //   return res.status(401).json({ error: 'Unauthorized. Please sign in to scan websites.' });
+  // }
+
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { url } = req.body;
+  const { url, includeAIFixes = true } = req.body;
   if (!url) {
     return res.status(400).json({ error: 'Missing URL in request body' });
   }
@@ -51,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Configure axe-core for the JSDOM environment
       axeCore.configure({
         branding: {
-          brand: "AI Accessibility Scanner"
+          brand: "Clynzer"
         }
       });
       
@@ -82,11 +89,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         helpUrl: violation.helpUrl,
         nodes: violation.nodes.length
       }));
+
+      // 6. Generate AI-powered fixes if requested and violations exist
+      let aiFixes = null;
+      if (includeAIFixes && formattedViolations.length > 0) {
+        try {
+          console.log('Generating AI-powered fixes...');
+          aiFixes = await generateFixes(formattedViolations);
+          console.log('AI fixes generated successfully');
+        } catch (error) {
+          console.error('Error generating AI fixes:', error);
+          
+          // Check if it's a quota exceeded error
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          if (errorMessage.includes('exceeded your current quota')) {
+            aiFixes = "**⚠️ OpenAI API Quota Exceeded**\n\nThe AI-powered fix recommendations are currently unavailable because the OpenAI API quota has been exceeded. To restore AI functionality:\n\n1. **Add billing/credits** to your OpenAI account at [platform.openai.com/billing](https://platform.openai.com/billing)\n2. **Update your API key** in the `.env.local` file\n3. **Contact support** if you believe this is an error\n\nIn the meantime, please refer to the help links in the violations table above for manual fix guidance.";
+          } else {
+            aiFixes = "**⚠️ AI Service Temporarily Unavailable**\n\nAI-powered fixes are temporarily unavailable due to a service error. Please refer to the help links in the violations table above for guidance on fixing these accessibility issues.";
+          }
+        }
+      }
       
       return res.status(200).json({ 
         violations: formattedViolations,
         url: url,
         timestamp: new Date().toISOString(),
+        aiFixes: aiFixes,
         summary: {
           total: formattedViolations.length,
           critical: formattedViolations.filter((v: any) => v.impact === 'critical').length,
