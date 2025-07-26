@@ -1,0 +1,19 @@
+app = "clynzer-worker"
+primary_region = "ord"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[experimental]
+  auto_rollback = true
+
+[env]
+  NODE_ENV = "production"
+
+# Environment variables will be set as secrets:
+# fly secrets set UPSTASH_REDIS_URL=rediss://...
+# fly secrets set SENDGRID_API_KEY=SG...
+# fly secrets set CLERK_SECRET_KEY=sk_...
+# fly secrets set OPENAI_API_KEY=sk-...
