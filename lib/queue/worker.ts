@@ -2,7 +2,7 @@ import { Worker, Job } from 'bullmq';
 import { JSDOM } from 'jsdom';
 import * as axeCore from 'axe-core';
 import { generateFixes } from '../openai';
-import { ScanJobData, ScanJobResult, redis } from './scanQueue';
+import { ScanJobData, ScanJobResult } from './scanQueue';
 
 // Create the worker function that processes scan jobs
 async function processScanJob(job: Job<ScanJobData>): Promise<ScanJobResult> {
@@ -144,7 +144,7 @@ export const scanWorker = new Worker<ScanJobData, ScanJobResult>(
   'accessibility-scan',
   processScanJob,
   {
-    connection: redis,
+    connection: { url: process.env.UPSTASH_REDIS_URL! },
     concurrency: 3, // Process up to 3 jobs concurrently
     removeOnComplete: { count: 100 },
     removeOnFail: { count: 50 },
@@ -168,7 +168,6 @@ scanWorker.on('error', (err) => {
 process.on('SIGINT', async () => {
   console.log('🛑 Shutting down scan worker...');
   await scanWorker.close();
-  await redis.disconnect();
   process.exit(0);
 });
 
