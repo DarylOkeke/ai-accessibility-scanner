@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "worker": "tsx lib/queue/worker.ts",
+    "worker:dev": "tsx --watch lib/queue/worker.ts"
+  }
+}
