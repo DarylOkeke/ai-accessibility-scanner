@@ -2,51 +2,51 @@
 
 Clynzer is a comprehensive accessibility scanning platform that helps ensure your websites meet WCAG compliance standards. Powered by advanced AI technology, Clynzer provides detailed accessibility reports and actionable fix recommendations.
 
-## ✨ Features
+## Features
 
-### 🔍 **Advanced Accessibility Scanning**
+###  **Advanced Accessibility Scanning**
 - Complete WCAG 2.1 AA compliance checking
 - Real-time scanning of any public website
 - Detailed violation reports with severity levels
 - Integration with axe-core accessibility engine
 
-### 🤖 **AI-Powered Fix Recommendations**
+###  **AI-Powered Fix Recommendations**
 - GPT-4 powered intelligent fix suggestions
 - Step-by-step implementation guides
 - Code examples and best practices
 - Context-aware recommendations
 
-### 📊 **Professional Reporting**
+###  **Professional Reporting**
 - PDF report generation with professional formatting
 - Comprehensive scan summaries and metrics
 - Exportable results for compliance documentation
 - Branded reports with Clynzer styling
 
-### 📅 **Scheduled Monitoring**
+###  **Scheduled Monitoring**
 - Automated weekly accessibility scans
 - Email alerts with PDF reports attached
 - GitHub Actions integration for CI/CD
 - Bulk scanning for multiple URLs
 
-### 💳 **Stripe Payment Integration**
+###  **Stripe Payment Integration**
 - Flexible subscription plans
 - Secure payment processing
 - Webhook integration for automated billing
 - Pro features and usage tracking
 
-### 🔐 **User Authentication**
+###  **User Authentication**
 - Clerk-powered secure authentication
 - User profiles and preferences
 - Role-based access control
 - OAuth integration support
 
-### 🎨 **Modern UI/UX**
+###  **Modern UI/UX**
 - Dark mode support
 - Responsive design for all devices
 - Real-time scanning progress
 - Interactive dashboard with charts
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+ 
@@ -97,7 +97,7 @@ Clynzer is a comprehensive accessibility scanning platform that helps ensure you
 5. **Open your browser:**
    Navigate to `http://localhost:3000`
 
-## 📖 Usage
+##  Usage
 
 ### Basic Scanning
 1. Enter any website URL in the scanner input
@@ -119,7 +119,7 @@ Clynzer is a comprehensive accessibility scanning platform that helps ensure you
 - `GET /api/users/scan-list` - Get scheduled scan users
 - `POST /api/email/send-report` - Send email reports
 
-## 🛠 Technology Stack
+## Technology Stack
 
 - **Frontend**: Next.js 15, React 19, TypeScript
 - **Styling**: Tailwind CSS with custom components
@@ -132,7 +132,7 @@ Clynzer is a comprehensive accessibility scanning platform that helps ensure you
 - **Charts**: Recharts for data visualization
 - **CI/CD**: GitHub Actions for scheduled scanning
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 clynzer/
@@ -155,7 +155,7 @@ clynzer/
 └── logs/                   # Scan logs and results
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 ### Environment Variables
 All configuration is handled through environment variables. See `.env.local` for required variables.
@@ -172,7 +172,7 @@ For automated scanning, configure these secrets in your GitHub repository:
 ### Email Configuration
 Set up SendGrid with your domain and configure DNS records for email delivery.
 
-## 📊 Features in Detail
+##  Features in Detail
 
 ### Accessibility Scanning
 - **Comprehensive**: Tests against WCAG 2.1 AA standards
@@ -192,19 +192,19 @@ Set up SendGrid with your domain and configure DNS records for email delivery.
 - **Exportable**: Perfect for compliance documentation
 - **Customizable**: Branded with Clynzer styling
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! Please read our contributing guidelines and submit pull requests for any improvements.
 
-## 📄 License
+## License
 
 This project is licensed under the ISC License - see the LICENSE file for details.
 
-## 🆘 Support
+## Support
 
 For support, email support@clynzer.com or create an issue in this repository.
 
-## 🔮 Roadmap
+## Roadmap
 
 - [ ] Multi-language support
 - [ ] Advanced scheduling options
@@ -217,4 +217,4 @@ For support, email support@clynzer.com or create an issue in this repository.
 
 ---
 
-**Clynzer** - Making the web accessible for everyone. 🌐♿
+** WORK IN PROGRESS
